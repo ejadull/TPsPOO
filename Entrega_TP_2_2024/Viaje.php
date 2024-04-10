@@ -10,16 +10,6 @@ class Viaje
     // Crear instancias de la clase Pasajero y almacenarlas en un array
     private $pasajeros = [];
 
-
-    public function __construct()
-    {
-        $this->pasajeros=[];
-        $this->codigo="N/A";
-        $this->destino="N/A";
-        $this->cantidadMaximaPasajeros=0;
-    }
-
-
     public function __construct($codigo, $destino, $cantidadMaximaPasajeros, $pasajeros)
     {
         $this->pasajeros=$pasajeros;

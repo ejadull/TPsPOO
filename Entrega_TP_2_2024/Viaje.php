@@ -1,24 +1,18 @@
 <?php
 
 include_once 'Pasajero.php';
+include_once 'ResponsableV.php';
 class Viaje
 {
     private $codigo;
     private $destino;
     private $cantidadMaximaPasajeros;
 
+    private $responsable;
+
     // Crear instancias de la clase Pasajero y almacenarlas en un array
     private $pasajeros = [];
 
-    /*
-    public function __construct($codigo, $destino, $cantidadMaximaPasajeros, $pasajeros)
-    {
-        $this->pasajeros=$pasajeros;
-        $this->codigo=$codigo;
-        $this->destino=$destino;
-        $this->cantidadMaximaPasajeros=$cantidadMaximaPasajeros;
-    }
-    */
     public function __construct()
     {
         $this->codigo=null;
@@ -46,9 +40,25 @@ class Viaje
     /**
      * @param mixed $destino
      */
-    public function setDestino($destino): void
+    public function setDestino($destino)
     {
         $this->destino = $destino;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponsable()
+    {
+        return $this->responsable;
+    }
+
+    /**
+     * @param mixed $responsable
+     */
+    public function setResponsable($responsable)
+    {
+        $this->responsable = $responsable;
     }
 
     /**
@@ -62,7 +72,7 @@ class Viaje
     /**
      * @param mixed $cantidadMaximaPasajeros
      */
-    public function setCantidadMaximaPasajeros($cantidadMaximaPasajeros): void
+    public function setCantidadMaximaPasajeros($cantidadMaximaPasajeros)
     {
         $this->cantidadMaximaPasajeros = $cantidadMaximaPasajeros;
     }
@@ -78,19 +88,19 @@ class Viaje
     /**
      * @param mixed $pasajeros
      */
-    public function setPasajeros($pasajeros): void
+    public function setPasajeros($pasajeros)
     {
         $this->pasajeros = $pasajeros;
     }
 
-    public function addPasajero(Pasajero $pasajero): void
+    public function addPasajero(Pasajero $pasajero)
     {
         array_push($this->pasajeros, $pasajero);
     }
 
     // Crear instancias de la clase Pasajero y almacenarlas en un array
 
-    public function listPasajeros(): void
+    public function listPasajeros()
     {
         // Acceder a los objetos en el array y mostrar información
         foreach ($this->pasajeros as $pasajero) {
@@ -109,7 +119,7 @@ class Viaje
     /**
      * @param mixed $codigo
      */
-    public function setCodigo($codigo): void
+    public function setCodigo($codigo)
     {
         $this->codigo = $codigo;
     }
@@ -123,6 +133,11 @@ class Viaje
     public function viajeEstaCompleto()
     {
         return $this->cantidadMaximaPasajeros === count($this->pasajeros);
+    }
+
+    public function tieneResponsableCompleto()
+    {
+        return $this->responsable !== null;
     }
 
     public function existePasajero($dni){
@@ -153,6 +168,9 @@ class Viaje
         echo "CODIGO <". $this->getCodigo() ."> \n";
         echo "DESTINO: " . $this->getDestino() . "\n";
         echo "NUM MAX PASAJEROS: " . $this->getCantidadMaximaPasajeros() . "\n\n";
+
+        echo "PASAJEROS EN VIAJE.\n\n";
+        $this->getResponsable()->__toString();
         echo "PASAJEROS EN VIAJE.\n";
         $this->listPasajeros();
     }

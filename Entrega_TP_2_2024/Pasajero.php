@@ -7,11 +7,14 @@ class Pasajero
     private $apellido;
     private $dni;
 
-    public function __construct($nombre, $apellido, $dni)
+    private $telefono;
+
+    public function __construct($nombre, $apellido, $dni,$telefono)
     {
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->dni = $dni;
+        $this->telefono = $telefono;
     }
 
     public function __destruct()
@@ -19,13 +22,24 @@ class Pasajero
         $this->nombre = null;
         $this->apellido = null;
         $this->dni = null;
+        $this->telefono = null;
     }
 
     public function __toString()
     {
-        return "DNI: " .  $this->getDni() .  ",  Nombre: " . $this->getNombre() . ' , Apellido: ' . $this->getApellido();
+        return "DNI: " .  $this->getDni() .  ",  Nombre: " . $this->getNombre() . ' , Apellido: ' . $this->getApellido() . ' , Teléfono: ' . $this->getTelefono();
     }
 
+
+    public function setTelefono()
+    {
+        return $this->telefono;
+    }
+
+    public function getTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+    }
     /**
      * @return mixed
      */

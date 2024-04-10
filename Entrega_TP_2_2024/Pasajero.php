@@ -31,12 +31,12 @@ class Pasajero
     }
 
 
-    public function setTelefono()
+    public function getTelefono()
     {
         return $this->telefono;
     }
 
-    public function getTelefono($telefono)
+    public function setTelefono($telefono)
     {
         $this->telefono = $telefono;
     }

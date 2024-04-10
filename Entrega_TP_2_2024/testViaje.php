@@ -53,15 +53,16 @@ function procesarResponsable(&$viaje)
         }
 
         $_numeroLicencia=false;
-        while(!is_numeric($_numeroEmpleado)){
+        while(!is_numeric($_numeroLicencia)){
             echo "Número de licencia.\n";
             $_numeroLicencia = trim(fgets(STDIN));
         }
 
-        $pasajero = new \ResponsableV($_numeroEmpleado, $_numeroLicencia, $_nombre, $_apellido);
-        $viaje->setResponsable( $pasajero);
+        $responsable = new \ResponsableV($_numeroEmpleado, $_numeroLicencia, $_nombre, $_apellido);
+        $viaje->setResponsable( $responsable);
         $terminar = true;
     }
+    var_dump($viaje);
 }
 
 function procesarPasajero(&$viaje)
@@ -85,9 +86,23 @@ function procesarPasajero(&$viaje)
                 echo "DNI del pasajero.\n";
                 $_dni = trim(fgets(STDIN));
             }
-            $pasajero = new \Pasajero($_nombre,$_apellido,$_dni);
-            $viaje->addPasajero( $pasajero);
-            $viaje->listPasajeros();
+            $_telefono=false;
+            while(!is_numeric($_telefono)){
+                echo "Teléfono del pasajero.\n";
+                $_telefono = trim(fgets(STDIN));
+            }
+
+            if($viaje->existePasajero( $_dni)){
+                echo "El pasajero con ese DNI ya existe en este viaje.\n";
+                $pasajero = $viaje->obtenerPasajero($_dni);
+                echo "Los datos de ese DNI son:\n";
+                echo $pasajero->__toString(). "\n";
+            }else{
+                $pasajero = new \Pasajero($_nombre,$_apellido,$_dni,$_telefono);
+                $viaje->addPasajero( $pasajero);
+                echo "El pasajero se agregó con éxito en este viaje.\n";
+            }
+
             $terminar = true;
         }
     }
@@ -145,7 +160,7 @@ function procesar(&$viaje, $opcion){
         case 5:
             $viaje->mostrarInformacion();
             break;
-        case 7:
+        case 6:
             echo "PASAJEROS EN VIAJE.\n";
             $viaje->listPasajeros();
             break;
@@ -178,7 +193,7 @@ function menuOpciones(&$viaje, $opcion){
 function mostrarMenu(){
     echo "\n";
     echo "1.- Ingresar un nuevo viaje.\n";
-    echo "2.- Ingresar pasajero.\n";
+    echo "2.- Ingresar responsable.\n";
     echo "3.- Ingresar pasajero.\n";
     echo "4.- Buscar pasajero por DNI.\n";
     echo "5.- Mostrar info del viaje.\n";
@@ -204,7 +219,7 @@ function programaPrincipal(){
 
         $opcion = trim(fgets(STDIN));
         if(is_numeric($opcion)){
-            $terminar = $opcion == 6;
+            $terminar = $opcion == 7;
             if(!$terminar){
                 menuOpciones( $viaje, $opcion);
             }

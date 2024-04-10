@@ -17,6 +17,7 @@ class Viaje
     {
         $this->codigo=null;
         $this->destino=null;
+        $this->responsable=null;
         $this->cantidadMaximaPasajeros=0;
         $this->pasajeros=[];
     }
@@ -25,6 +26,7 @@ class Viaje
     {
         $this->codigo=null;
         $this->destino=null;
+        $this->responsable=null;
         $this->cantidadMaximaPasajeros=0;
         $this->pasajeros=[];
     }
@@ -56,7 +58,12 @@ class Viaje
     /**
      * @param mixed $responsable
      */
-    public function setResponsable($responsable)
+    public function setResponsable(ResponsableV $responsable)
+    {
+        $this->responsable = $responsable;
+    }
+
+    public function addResponsable(ResponsableV $responsable)
     {
         $this->responsable = $responsable;
     }
@@ -167,11 +174,13 @@ class Viaje
         echo "INFORMACION DEL VIAJE.\n";
         echo "CODIGO <". $this->getCodigo() ."> \n";
         echo "DESTINO: " . $this->getDestino() . "\n";
-        echo "NUM MAX PASAJEROS: " . $this->getCantidadMaximaPasajeros() . "\n\n";
+        echo "NUM MAX PASAJEROS: " . $this->getCantidadMaximaPasajeros() ;
 
-        echo "PASAJEROS EN VIAJE.\n\n";
-        $this->getResponsable()->__toString();
-        echo "PASAJEROS EN VIAJE.\n";
+        echo "\n\nRESPONSABLE EN VIAJE.\n\n";
+        if($this->getResponsable() !== null)
+            echo $this->responsable->__toString();
+
+        echo "\n\nPASAJEROS EN VIAJE.\n";
         $this->listPasajeros();
     }
 }

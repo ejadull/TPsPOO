@@ -5,5 +5,5 @@
  * TP2
  */
 
- https://github.com/ejadull/TPsPOO/tree/develop
+https://github.com/ejadull/TPsPOO/tree/main/Entrega_TP_2_2024
 

@@ -2,9 +2,5 @@
  * Introducción a Programación Orientada a Objetos (IPOO) - 2024
  * Edgardo Jadull
  * LEG FAI 2022
- * https://github.com/ejadull/TPsPOO/tree/main/Entrega_TP_2_2024
+ * https://github.com/ejadull/TPsPOO/tree/main/SimulacroPrimerParcial2024
  */
-
-
-
-
